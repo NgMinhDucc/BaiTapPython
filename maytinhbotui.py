@@ -22,6 +22,7 @@ class Calculator(ctk.CTk):
         for i in range(6): # tinh ca man hinh la 6 hang
             self.grid_rowconfigure(i, weight=1)
             
+        # tao man hinh
         self.display = ctk.CTkEntry(self, justify="right", textvariable=self.display_var)
         self.display.grid(row=0, column=0, columnspan=4, padx=5, pady=10, sticky="nsew")
         
@@ -42,6 +43,7 @@ class Calculator(ctk.CTk):
                 button = ctk.CTkButton(self, text=buttons[i][j], command=lambda val = buttons[i][j]: self.click_button(val))
                 button.grid(row=i+1, column=j, columnspan=1, padx=3, pady=3, sticky="nsew")
     
+    # su kien cac phim
     def click_button(self, button):
         if button == "AC":
             self.equation = ""
