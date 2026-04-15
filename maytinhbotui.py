@@ -23,7 +23,7 @@ class Calculator(ctk.CTk):
             self.grid_rowconfigure(i, weight=1)
             
         # tao man hinh
-        self.display = ctk.CTkEntry(self, justify="right", textvariable=self.display_var)
+        self.display = ctk.CTkEntry(self, font=("Arial", 20), justify="right", textvariable=self.display_var)
         self.display.grid(row=0, column=0, columnspan=4, padx=5, pady=10, sticky="nsew")
         
         self.create_button()
