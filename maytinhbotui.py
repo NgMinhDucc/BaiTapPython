@@ -1,5 +1,4 @@
 import customtkinter as ctk
-import math
 
 ctk.set_appearance_mode("System")
 ctk.set_default_color_theme("blue")
