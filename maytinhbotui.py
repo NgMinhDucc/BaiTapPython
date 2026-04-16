@@ -40,7 +40,10 @@ class Calculator(ctk.CTk):
         
         for i in range(len(buttons)):
             for j in range(len(buttons[i])):
-                button = ctk.CTkButton(self, text=buttons[i][j], command=lambda val = buttons[i][j]: self.click_button(val))
+                if buttons[i][j] == "AC" or buttons[i][j] == "DEL":
+                    button = ctk.CTkButton(self, text=buttons[i][j], fg_color="#6FDF00", text_color="#000000", command=lambda val = buttons[i][j]: self.click_button(val))
+                else:
+                    button = ctk.CTkButton(self, text=buttons[i][j], fg_color="#42463E", command=lambda val = buttons[i][j]: self.click_button(val))
                 button.grid(row=i+1, column=j, columnspan=1, padx=3, pady=3, sticky="nsew")
     
     # su kien cac phim
