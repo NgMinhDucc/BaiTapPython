@@ -39,8 +39,8 @@ class Database(ctk.CTk):
     def create_style(self):
         style = ttk.Style()
         style.theme_use("default")
-        style.configure("Treeview", background="#2b2b2b", foreground="white", fieldbackground="#2b2b2b", rowheight=30)
-        style.configure("Treeview.Heading", background="#333333", foreground="white", font=("Arial", 15, "bold"))
+        style.configure("Treeview", background="#2b2b2b", foreground="white", fieldbackground="#2b2b2b", rowheight=30, font=("Arial", 15))
+        style.configure("Treeview.Heading", background="#333333", foreground="white", font=("Arial", 15))
         style.map("Treeview", background=[('selected', '#1f538d')])
         
     def create_table(self):
@@ -86,19 +86,21 @@ class Database(ctk.CTk):
         inner_form = ctk.CTkFrame(self.button_frame, fg_color="transparent")
         inner_form.pack(padx=20, pady=20)
         
-        add = ctk.CTkButton(inner_form, text="ADD", command=self.button_add)
+        button_font = ctk.CTkFont(family="Arial", size=15, weight="bold")
+        
+        add = ctk.CTkButton(inner_form, text="ADD", font=button_font, command=self.button_add)
         add.pack(padx=5, pady=20, side="left")
         
-        search = ctk.CTkButton(inner_form, text="SEARCH", command=self.button_search)
+        search = ctk.CTkButton(inner_form, text="SEARCH", font=button_font, command=self.button_search)
         search.pack(padx=5, pady=20, side="left")
         
-        update = ctk.CTkButton(inner_form, text="UPDATE", command=self.button_update)
+        update = ctk.CTkButton(inner_form, text="UPDATE", font=button_font, command=self.button_update)
         update.pack(padx=5, pady=20, side="left")
         
-        delete = ctk.CTkButton(inner_form, text="DELETE", command=self.button_delete)
+        delete = ctk.CTkButton(inner_form, text="DELETE", font=button_font, command=self.button_delete)
         delete.pack(padx=5, pady=20, side="left")
         
-        reset = ctk.CTkButton(inner_form, text="RESET", command=self.button_reset)
+        reset = ctk.CTkButton(inner_form, text="RESET", font=button_font, command=self.button_reset)
         reset.pack(padx=5, pady=20, side="left")
             
     # ham tai lai du lieu bang
