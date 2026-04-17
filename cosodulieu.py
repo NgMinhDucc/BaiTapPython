@@ -31,8 +31,8 @@ class Database(ctk.CTk):
         
         self.create_style()
         self.create_table()
-        self.create_input_form()
         self.create_button()
+        self.create_input_form()
         
         self.load_data("SELECT * FROM university")
             
@@ -64,36 +64,42 @@ class Database(ctk.CTk):
         
     def create_input_form(self):
         self.form_frame = ctk.CTkFrame(self)
-        self.form_frame.pack(padx=10, pady=10, fill="both", expand=True)
+        self.form_frame.pack(padx=10, pady=10, fill="both", side="bottom")
+        
+        inner_form = ctk.CTkFrame(self.form_frame, fg_color="transparent")
+        inner_form.pack(padx=20, pady=20)
         
         fields = ["ID", "Name", "Major", "GPA"]
         for field in fields:
-            self.label = ctk.CTkLabel(self.form_frame, text=field)
-            self.label.pack(padx=5, pady=20, side="left", expand=True)
+            self.label = ctk.CTkLabel(inner_form, text=field)
+            self.label.pack(padx=5, pady=20, side="left")
             
-            self.entry = ctk.CTkEntry(self.form_frame)
-            self.entry.pack(padx=5, pady=20, side="left", expand=True)
+            self.entry = ctk.CTkEntry(inner_form, width=110)
+            self.entry.pack(padx=5, pady=20, side="left")
             
             self.entries[field] = self.entry
             
     def create_button(self):
         self.button_frame = ctk.CTkFrame(self)
-        self.button_frame.pack(padx=5, pady=10, fill="both", expand=True)
+        self.button_frame.pack(padx=5, pady=(0,10), fill="both", side="bottom")
         
-        add = ctk.CTkButton(self, text="ADD", command=self.button_add)
-        add.pack(padx=5, pady=20, side="left", expand=True)
+        inner_form = ctk.CTkFrame(self.button_frame, fg_color="transparent")
+        inner_form.pack(padx=20, pady=20)
         
-        search = ctk.CTkButton(self, text="SEARCH", command=self.button_search)
-        search.pack(padx=5, pady=20, side="left", expand=True)
+        add = ctk.CTkButton(inner_form, text="ADD", command=self.button_add)
+        add.pack(padx=5, pady=20, side="left")
         
-        update = ctk.CTkButton(self, text="UPDATE", command=self.button_update)
-        update.pack(padx=5, pady=20, side="left", expand=True)
+        search = ctk.CTkButton(inner_form, text="SEARCH", command=self.button_search)
+        search.pack(padx=5, pady=20, side="left")
         
-        delete = ctk.CTkButton(self, text="DELETE", command=self.button_delete)
-        delete.pack(padx=5, pady=20, side="left", expand=True)
+        update = ctk.CTkButton(inner_form, text="UPDATE", command=self.button_update)
+        update.pack(padx=5, pady=20, side="left")
         
-        reset = ctk.CTkButton(self, text="RESET", command=self.button_reset)
-        reset.pack(padx=5, pady=20, side="left", expand=True)
+        delete = ctk.CTkButton(inner_form, text="DELETE", command=self.button_delete)
+        delete.pack(padx=5, pady=20, side="left")
+        
+        reset = ctk.CTkButton(inner_form, text="RESET", command=self.button_reset)
+        reset.pack(padx=5, pady=20, side="left")
             
     # ham tai lai du lieu bang
     def load_data(self, query, parameters=()):
@@ -150,13 +156,10 @@ class Database(ctk.CTk):
         self.load_data("SELECT * FROM university")
         
     def button_delete(self):
-        gpa = self.entries["GPA"].get()
-        gpa = float(gpa)
-        
         conn = sqlite3.connect("university.db")
         cursor = conn.cursor()
         
-        cursor.execute("DELETE FROM university WHERE gpa = ?", (gpa,))
+        cursor.execute("DELETE FROM university WHERE gpa < 2.0")
         
         conn.commit()
         conn.close()
@@ -164,7 +167,7 @@ class Database(ctk.CTk):
         self.load_data("SELECT * FROM university")
     
     def button_reset(self):
-        self.load_data("SELECT * FROM univeristy")
+        self.load_data("SELECT * FROM university")
 
         
 if __name__ == "__main__":
