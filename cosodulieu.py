@@ -99,9 +99,6 @@ class Database(ctk.CTk):
         
         delete = ctk.CTkButton(inner_form, text="DELETE", font=button_font, command=self.button_delete)
         delete.pack(padx=5, pady=20, side="left")
-        
-        reset = ctk.CTkButton(inner_form, text="RESET", font=button_font, command=self.button_reset)
-        reset.pack(padx=5, pady=20, side="left")
             
     # ham tai lai du lieu bang
     def load_data(self, query, parameters=()):
@@ -166,9 +163,6 @@ class Database(ctk.CTk):
         conn.commit()
         conn.close()
         
-        self.load_data("SELECT * FROM university")
-    
-    def button_reset(self):
         self.load_data("SELECT * FROM university")
 
         
