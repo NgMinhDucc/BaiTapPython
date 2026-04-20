@@ -117,7 +117,7 @@ class Database(ctk.CTk):
         conn.close()
         
     def button_add(self):
-        # id = self.entries["ID"].get()
+        # nhap ten, nganh, gpa, id tu dong tang
         name = self.entries["Name"].get()
         major = self.entries["Major"].get()
         gpa = self.entries["GPA"].get()
@@ -134,12 +134,14 @@ class Database(ctk.CTk):
         self.load_data("SELECT * FROM university")
         
     def button_search(self):
+        # tim sinh vien theo gpa
         gpa = self.entries["GPA"].get()
         gpa = float(gpa)
         
         self.load_data("SELECT * FROM university WHERE gpa > ?", (gpa,))
         
     def button_update(self):
+        # cap nhat gpa theo id sinh vien
         id = self.entries["ID"].get()
         gpa = self.entries["GPA"].get()
         gpa = float(gpa)
@@ -155,6 +157,7 @@ class Database(ctk.CTk):
         self.load_data("SELECT * FROM university")
         
     def button_delete(self):
+        # tu dong xoa sinh vien co gpa < 2.0
         conn = sqlite3.connect("university.db")
         cursor = conn.cursor()
         
